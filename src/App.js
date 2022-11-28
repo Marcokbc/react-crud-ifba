@@ -1,7 +1,7 @@
 import './App.css';
-import Create from './components/create';
-import Read from './components/read';
-import Update from './components/update';
+import Create from './components/Create/index.js';
+import Read from './components/Read/index.js';
+import Update from './components/Update/index.js';
 
 import {
   BrowserRouter as Router,
@@ -22,7 +22,7 @@ function App() {
         </div>
         <div style={{ marginTop: 20 }}>
           <Routes>
-              <Route exact path="/read" element={<Read />} />
+              <Route exact path="/" element={<Read />} />
           </Routes>
         </div>
         <Routes>
