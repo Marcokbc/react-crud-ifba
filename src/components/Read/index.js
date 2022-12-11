@@ -14,6 +14,7 @@ export default function Read() {
             }, [])
 
     const setData = (data) => {
+        console.log(data);  
                 let { id, telefone, cpf, nome, email, senha, datanasc, cep, bairro, cidade, estado } = data;
                 localStorage.setItem('ID', id);
                 localStorage.setItem('Tel', telefone);
@@ -29,14 +30,15 @@ export default function Read() {
             }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/alunos/${id}`)
+        // console.log(`http://localhost:8080/alunos/${id}`);
+        axios.delete(`http://localhost:8080/alunos/${id}/`)
         .then(() => {
             getData();
         })
     }
 
     const getData = () => {
-        axios.get(`http://localhost:8080/alunos`)
+        axios.get(`http://localhost:8080/alunos/`)
             .then((getData) => {
                  setAPIData(getData.data);
              })
@@ -50,6 +52,7 @@ export default function Read() {
                         <Table.HeaderCell>Nome</Table.HeaderCell>
                         <Table.HeaderCell>Email</Table.HeaderCell>
                         <Table.HeaderCell>CEP</Table.HeaderCell>
+                        <Table.HeaderCell>CPF</Table.HeaderCell>
                         <Table.HeaderCell>Cidade</Table.HeaderCell>
                         <Table.HeaderCell>Estado</Table.HeaderCell>
                         <Table.HeaderCell>Telefone</Table.HeaderCell>
@@ -62,11 +65,13 @@ export default function Read() {
 
                 <Table.Body>
                 {APIData.map((data) => {
+                    // console.log(data.nome);
                     return (
                     <Table.Row>
                         <Table.Cell>{data.nome}</Table.Cell>
                         <Table.Cell>{data.email}</Table.Cell>
                         <Table.Cell>{data.cep}</Table.Cell>
+                        <Table.Cell>{data.cpf}</Table.Cell>
                         <Table.Cell>{data.cidade}</Table.Cell>
                         <Table.Cell>{data.estado}</Table.Cell>
                         <Table.Cell>{data.telefone}</Table.Cell>
